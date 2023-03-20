@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            load_dataset_btn = new Button();
-            load_vocabulary_btn = new Button();
-            text_process_btn = new Button();
-            save_data_btn = new Button();
             load_data_btn = new Button();
+            save_data_btn = new Button();
+            text_process_btn = new Button();
+            load_vocabulary_btn = new Button();
+            load_dataset_btn = new Button();
             groupBox2 = new GroupBox();
+            epoch_text = new TextBox();
             load_weight_btn = new Button();
             save_weight_btn = new Button();
             learn_btn = new Button();
             create_model_btn = new Button();
-            epoch_text = new TextBox();
             groupBox3 = new GroupBox();
-            testing_index_box = new ComboBox();
-            review_data_txt = new RichTextBox();
-            label1 = new Label();
-            review_btn = new Button();
-            label2 = new Label();
-            p_sentiment_txt = new TextBox();
             t_sentiment_txt = new TextBox();
+            p_sentiment_txt = new TextBox();
+            label2 = new Label();
+            review_btn = new Button();
+            label1 = new Label();
+            review_data_txt = new RichTextBox();
+            testing_index_box = new ComboBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -67,32 +67,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Database Setting";
             // 
-            // load_dataset_btn
+            // load_data_btn
             // 
-            load_dataset_btn.Location = new Point(6, 22);
-            load_dataset_btn.Name = "load_dataset_btn";
-            load_dataset_btn.Size = new Size(130, 30);
-            load_dataset_btn.TabIndex = 0;
-            load_dataset_btn.Text = "Load Dataset";
-            load_dataset_btn.UseVisualStyleBackColor = true;
-            // 
-            // load_vocabulary_btn
-            // 
-            load_vocabulary_btn.Location = new Point(6, 58);
-            load_vocabulary_btn.Name = "load_vocabulary_btn";
-            load_vocabulary_btn.Size = new Size(130, 30);
-            load_vocabulary_btn.TabIndex = 1;
-            load_vocabulary_btn.Text = "Load Vocabulary";
-            load_vocabulary_btn.UseVisualStyleBackColor = true;
-            // 
-            // text_process_btn
-            // 
-            text_process_btn.Location = new Point(6, 94);
-            text_process_btn.Name = "text_process_btn";
-            text_process_btn.Size = new Size(130, 30);
-            text_process_btn.TabIndex = 2;
-            text_process_btn.Text = "Text Processing";
-            text_process_btn.UseVisualStyleBackColor = true;
+            load_data_btn.Location = new Point(6, 166);
+            load_data_btn.Name = "load_data_btn";
+            load_data_btn.Size = new Size(130, 30);
+            load_data_btn.TabIndex = 4;
+            load_data_btn.Text = "Load Data";
+            load_data_btn.UseVisualStyleBackColor = true;
+            load_data_btn.Click += load_data_btn_Click;
             // 
             // save_data_btn
             // 
@@ -102,15 +85,37 @@
             save_data_btn.TabIndex = 3;
             save_data_btn.Text = "Save Data";
             save_data_btn.UseVisualStyleBackColor = true;
+            save_data_btn.Click += save_data_btn_Click;
             // 
-            // load_data_btn
+            // text_process_btn
             // 
-            load_data_btn.Location = new Point(6, 166);
-            load_data_btn.Name = "load_data_btn";
-            load_data_btn.Size = new Size(130, 30);
-            load_data_btn.TabIndex = 4;
-            load_data_btn.Text = "Load Data";
-            load_data_btn.UseVisualStyleBackColor = true;
+            text_process_btn.Location = new Point(6, 94);
+            text_process_btn.Name = "text_process_btn";
+            text_process_btn.Size = new Size(130, 30);
+            text_process_btn.TabIndex = 2;
+            text_process_btn.Text = "Text Processing";
+            text_process_btn.UseVisualStyleBackColor = true;
+            text_process_btn.Click += text_process_btn_Click;
+            // 
+            // load_vocabulary_btn
+            // 
+            load_vocabulary_btn.Location = new Point(6, 58);
+            load_vocabulary_btn.Name = "load_vocabulary_btn";
+            load_vocabulary_btn.Size = new Size(130, 30);
+            load_vocabulary_btn.TabIndex = 1;
+            load_vocabulary_btn.Text = "Load Vocabulary";
+            load_vocabulary_btn.UseVisualStyleBackColor = true;
+            load_vocabulary_btn.Click += load_vocabulary_btn_Click;
+            // 
+            // load_dataset_btn
+            // 
+            load_dataset_btn.Location = new Point(6, 22);
+            load_dataset_btn.Name = "load_dataset_btn";
+            load_dataset_btn.Size = new Size(130, 30);
+            load_dataset_btn.TabIndex = 0;
+            load_dataset_btn.Text = "Load Dataset";
+            load_dataset_btn.UseVisualStyleBackColor = true;
+            load_dataset_btn.Click += load_dataset_btn_Click;
             // 
             // groupBox2
             // 
@@ -125,6 +130,14 @@
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Neural Network";
+            // 
+            // epoch_text
+            // 
+            epoch_text.Location = new Point(6, 58);
+            epoch_text.Name = "epoch_text";
+            epoch_text.PlaceholderText = "Epoch";
+            epoch_text.Size = new Size(130, 23);
+            epoch_text.TabIndex = 5;
             // 
             // load_weight_btn
             // 
@@ -161,14 +174,7 @@
             create_model_btn.TabIndex = 0;
             create_model_btn.Text = "Create Model";
             create_model_btn.UseVisualStyleBackColor = true;
-            // 
-            // epoch_text
-            // 
-            epoch_text.Location = new Point(6, 58);
-            epoch_text.Name = "epoch_text";
-            epoch_text.PlaceholderText = "Epoch";
-            epoch_text.Size = new Size(130, 23);
-            epoch_text.TabIndex = 5;
+            create_model_btn.Click += create_model_btn_Click;
             // 
             // groupBox3
             // 
@@ -186,40 +192,21 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Database Setting";
             // 
-            // testing_index_box
+            // t_sentiment_txt
             // 
-            testing_index_box.FormattingEnabled = true;
-            testing_index_box.Location = new Point(6, 27);
-            testing_index_box.Name = "testing_index_box";
-            testing_index_box.Size = new Size(121, 23);
-            testing_index_box.TabIndex = 0;
-            testing_index_box.Text = "Testing Data";
+            t_sentiment_txt.Location = new Point(131, 306);
+            t_sentiment_txt.Name = "t_sentiment_txt";
+            t_sentiment_txt.ReadOnly = true;
+            t_sentiment_txt.Size = new Size(120, 23);
+            t_sentiment_txt.TabIndex = 9;
             // 
-            // review_data_txt
+            // p_sentiment_txt
             // 
-            review_data_txt.Location = new Point(6, 56);
-            review_data_txt.Name = "review_data_txt";
-            review_data_txt.Size = new Size(361, 208);
-            review_data_txt.TabIndex = 1;
-            review_data_txt.Text = "";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(8, 309);
-            label1.Name = "label1";
-            label1.Size = new Size(102, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Target Sentiment: ";
-            // 
-            // review_btn
-            // 
-            review_btn.Location = new Point(6, 270);
-            review_btn.Name = "review_btn";
-            review_btn.Size = new Size(130, 30);
-            review_btn.TabIndex = 6;
-            review_btn.Text = "Review";
-            review_btn.UseVisualStyleBackColor = true;
+            p_sentiment_txt.Location = new Point(131, 342);
+            p_sentiment_txt.Name = "p_sentiment_txt";
+            p_sentiment_txt.ReadOnly = true;
+            p_sentiment_txt.Size = new Size(120, 23);
+            p_sentiment_txt.TabIndex = 8;
             // 
             // label2
             // 
@@ -230,21 +217,40 @@
             label2.TabIndex = 7;
             label2.Text = "Predicted Sentiment:";
             // 
-            // p_sentiment_txt
+            // review_btn
             // 
-            p_sentiment_txt.Location = new Point(131, 342);
-            p_sentiment_txt.Name = "p_sentiment_txt";
-            p_sentiment_txt.ReadOnly = true;
-            p_sentiment_txt.Size = new Size(120, 23);
-            p_sentiment_txt.TabIndex = 8;
+            review_btn.Location = new Point(6, 270);
+            review_btn.Name = "review_btn";
+            review_btn.Size = new Size(130, 30);
+            review_btn.TabIndex = 6;
+            review_btn.Text = "Review";
+            review_btn.UseVisualStyleBackColor = true;
             // 
-            // t_sentiment_txt
+            // label1
             // 
-            t_sentiment_txt.Location = new Point(131, 306);
-            t_sentiment_txt.Name = "t_sentiment_txt";
-            t_sentiment_txt.ReadOnly = true;
-            t_sentiment_txt.Size = new Size(120, 23);
-            t_sentiment_txt.TabIndex = 9;
+            label1.AutoSize = true;
+            label1.Location = new Point(8, 309);
+            label1.Name = "label1";
+            label1.Size = new Size(102, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Target Sentiment: ";
+            // 
+            // review_data_txt
+            // 
+            review_data_txt.Location = new Point(6, 56);
+            review_data_txt.Name = "review_data_txt";
+            review_data_txt.Size = new Size(361, 208);
+            review_data_txt.TabIndex = 1;
+            review_data_txt.Text = "";
+            // 
+            // testing_index_box
+            // 
+            testing_index_box.FormattingEnabled = true;
+            testing_index_box.Location = new Point(6, 27);
+            testing_index_box.Name = "testing_index_box";
+            testing_index_box.Size = new Size(121, 23);
+            testing_index_box.TabIndex = 0;
+            testing_index_box.Text = "Testing Data";
             // 
             // Form1
             // 
