@@ -12,8 +12,4 @@
     <PackageReference Include="Word2vec.Tools" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Backprop\" />
-  </ItemGroup>
-
 </Project>

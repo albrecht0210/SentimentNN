@@ -147,6 +147,7 @@
             load_weight_btn.TabIndex = 4;
             load_weight_btn.Text = "Load Weights";
             load_weight_btn.UseVisualStyleBackColor = true;
+            load_weight_btn.Click += load_weight_btn_Click;
             // 
             // save_weight_btn
             // 
@@ -156,6 +157,7 @@
             save_weight_btn.TabIndex = 3;
             save_weight_btn.Text = "Save Weights";
             save_weight_btn.UseVisualStyleBackColor = true;
+            save_weight_btn.Click += save_weight_btn_Click;
             // 
             // learn_btn
             // 
@@ -165,6 +167,7 @@
             learn_btn.TabIndex = 2;
             learn_btn.Text = "Learn";
             learn_btn.UseVisualStyleBackColor = true;
+            learn_btn.Click += learn_btn_Click;
             // 
             // create_model_btn
             // 
@@ -225,6 +228,7 @@
             review_btn.TabIndex = 6;
             review_btn.Text = "Review";
             review_btn.UseVisualStyleBackColor = true;
+            review_btn.Click += review_btn_Click;
             // 
             // label1
             // 
@@ -251,6 +255,7 @@
             testing_index_box.Size = new Size(121, 23);
             testing_index_box.TabIndex = 0;
             testing_index_box.Text = "Testing Data";
+            testing_index_box.SelectedIndexChanged += testing_index_box_SelectedIndexChanged;
             // 
             // Form1
             // 
