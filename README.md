@@ -2,7 +2,7 @@
 
 ## How to use:
 
-Step 1: Download the nessesary data from 
+Step 1: Download the nessesary data on https://drive.google.com/drive/folders/1Ex4dcyDRnbmcZbTpCEplU_mfedzoWSKt?usp=sharing 
 
 Step 2: Install Word2vec.Tools if not installed
 
