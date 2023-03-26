@@ -105,6 +105,8 @@ namespace SentimentNN
                 var filteredWords = words.Where(w => !StopWords.Contains(w)).ToArray();
 
                 data = string.Join(' ', filteredWords);
+
+                input_list.Add(data);
             }
 
             return input_list.ToArray();
