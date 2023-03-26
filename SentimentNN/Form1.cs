@@ -44,6 +44,8 @@ namespace SentimentNN
                 testing_index_box.Items.Add((i + 1));
 
             Debug.WriteLine("Dataset Loaded.");
+            Debug.WriteLine(DatasetHelper.InputTextProcessing("Those were the best days of my life!"));
+
         }
 
         private void load_vocabulary_btn_Click(object sender, EventArgs e)
@@ -60,8 +62,12 @@ namespace SentimentNN
             output = DatasetHelper.OutputTextProcessing(output_train_unprocessed_text);
             input = new List<double[]>();
 
-            foreach (string input_text in input_train_processed_text)
-                input.Add(DatasetHelper.WordEmbedding(_model, input_text));
+
+            for (int i = 0; i < input_train_processed_text.Length; i++)
+            {
+                Debug.WriteLine("Data: " + (i + 1));
+                input.Add(DatasetHelper.WordEmbedding(_model, input_train_processed_text[i]));
+            }
 
             Debug.WriteLine("Text Processed.");
         }
@@ -70,7 +76,7 @@ namespace SentimentNN
         {
             Debug.WriteLine("Saving Data...");
             DatasetHelper.SaveTrainingData("D:\\Datasets\\SentimentNNData\\train.csv", input, output);
-            DatasetHelper.SaveTestingData("D:\\Datasets\\SentimentNNData\\test.csv", input_test_unprocessed_text, output_test_unprocessed_text); ;
+            DatasetHelper.SaveTestingData("D:\\Datasets\\SentimentNNData\\test.csv", input_test_unprocessed_text, output_test_unprocessed_text);
             Debug.WriteLine("Data Saved...");
         }
 
@@ -108,9 +114,9 @@ namespace SentimentNN
                 int output_counter = 0;
                 foreach (double[] data in input)
                 {
-                    Debug.WriteLine("Epoch: " + epoch + ", Data: " + (output_counter + 1));
+                    Debug.WriteLine("Epoch: " + (i + 1) + ", Data: " + (output_counter + 1) + ", Length: " + data.Length);
                     for (int x = 0; x < data.Length; x++)
-                        net.setInputs(x, data[i]);
+                        net.setInputs(x, data[x]);
 
                     if (output[output_counter] == 1)
                     {
@@ -147,7 +153,9 @@ namespace SentimentNN
         {
             Debug.WriteLine("Setting Testing Data...");
             review_data_txt.Text = input_test_unprocessed_text[testing_index_box.SelectedIndex];
-            t_sentiment_txt.Text = output_test_unprocessed_text[testing_index_box.SelectedIndex];
+            string temp = output_test_unprocessed_text[testing_index_box.SelectedIndex];
+            t_sentiment_txt.Text = char.ToUpper(temp[0]) + temp.Substring(1);
+            p_sentiment_txt.Text = "";
             Debug.WriteLine("Testing Data Set...");
         }
 
@@ -158,13 +166,14 @@ namespace SentimentNN
 
             for (int x = 0; x < input_test.Length; x++)
                 net.setInputs(x, input_test[x]);
-
-            string output_test = output_test_unprocessed_text[testing_index_box.SelectedIndex];
             net.run();
 
             double[] output_val = new double[2];
             output_val[0] = net.getOuputData(0);
             output_val[1] = net.getOuputData(1);
+
+            for (int i = 0; i < output_val.Length; i++)
+                Debug.WriteLine(output_val[i]);
 
             int maxIndex = Array.IndexOf(output_val, output_val.Max());
 
