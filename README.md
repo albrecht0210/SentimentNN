@@ -1,4 +1,4 @@
-# SentimentNN
+# Sentiment Neural Network (C#)
 
 ## How to use:
 
